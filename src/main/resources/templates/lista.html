@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>LISTA IMPIEGATI</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<!-- <script type="text/javascript" src="angular.js"></script>  -->
+<script type="text/javascript" src="imp.js"></script>
+
+<style type="text/css">
+
+
+.example-animate-container {
+  background:white;
+  border:1px solid black;
+  list-style:none;
+  margin:0;
+  padding:0 10px;
+}
+
+.animate-repeat {
+  line-height:30px;
+  list-style:none;
+  box-sizing:border-box;
+}
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  transition:all linear 0.5s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity:0;
+  max-height:0;
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity:1;
+  max-height:30px;
+}
+
+
+</style>
+
+
+</head>
+
+<body>
+
+
+
+<div ng-controller="repeatController">
+  I have {{friends.length}} friends. They are:
+  <input type="search" ng-model="q" placeholder="filter friends..." aria-label="filter friends" />
+  <ul class="example-animate-container">
+    <li class="animate-repeat" ng-repeat="friend in friends | filter:q as results track by friend.name">
+      [{{$index + 1}}] {{friend.name}} who is {{friend.age}} years old.
+    </li>
+    <li class="animate-repeat" ng-if="results.length === 0">
+      <strong>No results found...</strong>
+    </li>
+  </ul>
+</div>
+
+
+
+</body>
+</html>

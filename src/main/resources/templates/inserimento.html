@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Nuovo Impiegato</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script>
+var app = angular.module('MyApp', []);
+
+app.controller('FormCtrl', ['$scope', '$http', function($scope, $http) {
+	
+	$scope.formData = {};
+	
+	alert("Mando i dati");
+	
+	$scope.send = function() {
+		//if($scope.myForm.$valid) {
+			var config = {
+    			url: '/insert',
+    			method: 'POST',
+    			headers: {'Content-Type': 'application/json'},
+    			data: $scope.formData
+    		};
+    		alert(JSON.stringify($scope.formData));
+    		
+    		$http(config).then(function(response) {
+	    		// Successo
+	    	}, function(response) {
+		    	// Errore
+	    	});
+
+		//}	
+	};
+	
+		
+}]);
+</script>
+</head>
+
+<body ng-app="MyApp">
+	<form name="myForm" method="post" ng-controller="FormCtrl" novalidate>
+		<div>
+			<input type="text" name="nome" placeholder="Nome" ng-model="formData.firstName" class="form-control" required />
+		</div>
+		<div>
+			<input type="text" name="cognome" placeholder="Cognome" ng-model="formData.lastName" class="form-control" required />
+		</div>
+		<div>
+			<input type="text" name="email" placeholder="Email" ng-model="formData.email" class="form-control" required />
+		</div>
+		<!-- Altri campi -->
+		<p><input type="button" class="btn btn-primary" ng-click="send()" value="Invia" /></p>
+	</form>
+</body>
+
+</html>

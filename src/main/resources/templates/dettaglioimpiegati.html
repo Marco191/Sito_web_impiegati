@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>DETTAGLIO IMPIEGATO</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<!-- <script type="text/javascript" src="angular.js"></script>  -->
+<script type="text/javascript" src=""></script>
+<!--
+<script>
+angular.module("myApp")
+.controller("myController", function($scope, $http) {
+	$http.get("/list")
+		.success(function(data) {
+			$scope.elencoCitta = data;
+		})
+		.error(function() {
+			alert("Si è verificato un errore!");
+		});
+});
+</script>
+-->
+<!--
+<script>
+var app = angular.module('MyApp', []);
+
+app.controller('FormCtrl', ['$scope', '$http', function($scope, $http) {
+	
+	$scope.send = function() {
+		if($scope.myForm.$valid) {
+			var config = {
+    			url: '/impiegato/delete' + employee.id,
+    			method: 'DELETE',
+    			//dataType: 'json',
+    			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    			data: $.param($scope.employee.id)
+    		};
+    		
+    		$http(config).then(function(response) {
+	    		// Successo
+    			alert("Dati correttamente inviati!");
+	    	}, function(response) {
+		    	// Errore
+	    		alert("Si è verificato un errore!");
+	    	});
+
+		}	
+	};
+	
+		
+}]);
+</script>
+-->
+<style>
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+    
+    display: block;
+    width: 95px;
+    height: 45px;
+    background: #4E9CAF;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+}
+</style>
+
+</head>
+
+<body>
+
+    <h2 style="color:red;">DETTAGLIO IMPIEGATO</h2>
+    <a style="color:blue;" href="/impiegato/list" class="button">Lista impiegati</a>
+    <br>
+
+    <table>
+         <tbody>
+         <tr>
+            <td style="color:orange;">ID</td>
+            <td style="color:orange;">Nome</td>
+            <td style="color:orange;">Cognome</td>
+            <td style="color:orange;">Email</td>
+         </tr>
+           <tr th:each="employee: ${employee}">
+               <td th:text="${employee.id}" />
+               <td th:text="${employee.firstName}" />
+               <td th:text="${employee.lastName}" />
+               <td th:text="${employee.email}" />
+               <td><a th:href="@{/impiegato/openUpdate/{id}(id=${employee.id})}"><span class="label label-warning">Modifica</span></a></td>
+               <td><a th:href="@{/impiegato/delete/{id}(id=${employee.id})}"><span class="label label-warning">Cancella</span></a></td>
+               <!-- <td ng-app="myApp" ng-controller="FormCtrl"><button type="submit" ng-click="send()">Elimina dati impiegato</button></td> -->
+           </tr>
+         </tbody>
+    </table>
+    
+    <!--
+    <br>
+    <div ng-app ="myApp">
+        <div ng-controller="myController">
+           Response Data: {{data}} <br />
+           Error: {{error}}
+        </div>
+    </div>
+    -->
+
+</body>
+</html>

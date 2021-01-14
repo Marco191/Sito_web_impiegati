@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+
+<body>
+Il messaggio recita: <p th:text="'Ciao ' + ${name} + '!'" />
+
+       <section>
+			<div>
+				<ul>
+					<li>
+						<a href="/impiegato/list">
+							Lista Impiegati
+						</a>
+						<br>
+					
+						<br>
+						
+					</li>
+				</ul>
+			</div>
+		</section>
+		
+		<div>
+		     <a href="/impiegato/greeting">
+		     Clicca per un altro saluto ...
+		     </a>
+		     <br>
+		     <br>
+		  <!--   <a href="${#mvc.url('ImpiegatoController#welcome').build()}">
+		     Clicca per un saluto in #mvc
+		     </a>
+		     <br>  -->
+		     <!--  <a href="/impiegato/inserimento"> Cliccami -->
+		</div>
+		<br>
+		
+
+</body>
+</html>

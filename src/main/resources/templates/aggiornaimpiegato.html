@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>AGGIORNA IMPIEGATO</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<!-- <script type="text/javascript" src="angular.js"></script>  -->
+<script type="text/javascript" src=""></script>
+<script>
+    angular.module('aggiornaEx2', []).controller('FormController',['$scope', function($scope){
+    	$scope.invia = function(utente) {
+	    $http.put("/impiegato/update/{id}(id=${employee.id})", utente) //{firstName: $scope.firstName, lastName: $scope.lastName, email: $scope.email }
+	      .success(function() { alert("Dati correttamente inviati!");})
+	      .error(function() { alert("Si è verificato un errore!");});
+        };
+    }]);
+
+</script>
+</head>
+
+<body>
+
+     <div ng-app="aggiornaEx2">
+          
+          <form name="myForm" ng-controller="FormController" novalidate>  <!-- ng-submit="invia(utente)" si mette in form al posto di ngclick se non si inserisce in button -->
+	Nome:<input type="text" ng-model="utente.firstName"
+	       name="firstName" ng-maxlength="20"
+		   ng-required="true">
+	<div ng-show="myForm.firstName.$invalid">
+		Il nome impiegato e' obbligatorio e non puo' superare i 20 caratteri
+	</div>
+	Cognome:<input type="text" ng-model="utente.lastName"
+	       name="lastName" ng-maxlength="20"
+		   ng-required="true">
+	<div ng-show="myForm.lastName.$invalid">
+		Il cognome impiegato e' obbligatorio e non puo' superare i 20 caratteri
+	</div>
+	Email:<input type="text" ng-model="utente.email"
+	       name="email" ng-maxlength="20"
+		   ng-required="true">
+	<div ng-show="myForm.email.$invalid">
+		Email e' obbligatoria e non puo' superare i 20 caratteri
+	</div>	   
+	<button type="submit" ng-click="invia(utente)">Invia</button>
+</form>
+     
+     </div>
+     
+     <br>
+<br>
+<!-- 
+<h3 style="color:red;">Aggiornamento tramite Form </h3>
+<form action="/impiegato/update" method="put" >
+Nome:
+  <input type="text" id="firstName" name="firstName" value="${employee.firstName}"/> 
+  <br>
+  Cognome:
+  <input type="text" id="lastName" name="lastName" label/>
+  <br>
+  Email:
+  <input type="text" id="email" name="email" />
+  <br>
+  <input type="submit" id="submit" value="Invia" style="color:blue;"/>
+</form> -->
+
+<br>
+<br>
+ <!-- 
+      <div >
+           <table  >  
+           <thead>
+               <tr th:each="employee: ${employee} "> </tr>
+           </thead>
+             <tbody>
+                  	
+              <tr>    
+			<td><label>Nome:</label></td>
+			<td><b class="text-danger">${employee.firstName}</b> </td>
+			</tr>  
+			 
+			<tr>    
+			<td><label>Cognome:</label> </td>
+			<td><b class="text-danger">${employee.lastName}</b></td>
+			</tr> 
+	
+			<tr>    
+			<td><label>Email:</label> </td> 
+			<td><b class="text-danger">${employee.email}</b></td>
+			</tr>
+			
+		   </tbody>
+		 </table>
+		 <button type="button" class="btn btn-block btn-warning btn-lg"><a href="@{/impiegato/update/}"\> <font color="papayawhip"><strong>Salva</strong></font></a></button>	
+       </div>
+       -->
+       
+       <br>
+       
+    <!--    
+       <table>
+         <tbody>
+         <tr>
+           
+            <td style="color:orange;">Nome</td>
+            <td style="color:orange;">Cognome</td>
+           <td style="color:orange;">Email</td> 
+         </tr>
+           <tr th:each="employee: ${employee} ">
+               <td th:text="${employee.firstName}" />
+               <td th:text="${employee.lastName}" />
+               <td th:text="${employee.email}" /> 
+               <td th:text="${employee.email}"><input type="text" id="firstName" name="firstName" value="${employee.firstName}"/></td>
+               <td><button type="button" id="load">Carica dati impiegato</button></td>
+               <button type="button" class="btn btn-block btn-warning btn-lg"><a href="@{/impiegato/update/}"\> <font color="papayawhip"><strong>Salva</strong></font></a></button>
+           </tr>
+         </tbody>
+    </table>
+    --> 
+    
+    <br>
+<!--     
+<h3 style="color:red;">Aggiornamento tramite Form 2 </h3>
+<form action="/impiegato/update" method="put" >
+<table>
+   <tbody>
+         <tr th:each="employee: ${employee} ">
+               <td>Nome: <input type="text" id="firstName" name="firstName" value="${employee.firstName}"/> </td>
+               <br>
+               <td>Cognome: <input type="text" id="lastName" name="lastName" value="${employee.lastName}"/> </td>
+               <br>
+               <td>Email: <input type="text" id="email" name="email" value="${employee.email}"/> </td>
+         </tr>
+         <tr th:text=" ${employee} ">
+               <td>Cognome: <input type="text" id="lastName" name="lastName" value="${employee.lastName}"/> </td>
+         </tr>
+         <tr th:text=" ${employee} ">
+               <td>Email: <input type="text" id="email" name="email" value="${employee.email}"/> </td>
+         </tr> 
+   </tbody>
+</table>
+
+  <input type="submit" id="submit" value="Invia" style="color:blue;"/>
+</form>
+-->
+
+<br>
+<br>
+
+        <h3 style="color:red;">Aggiornamento tramite Form 3 </h3>
+        <form action="#" th:action="@{/impiegato/update/{id}(id=${employee.id})}" th:object="${employee}" method="post">
+            <p class="text"><label>Nome:</label>  <input type="text" th:field="*{firstName}" /></p>
+            <p class="text"><label>Cognome:</label> <input type="text" th:field="*{lastName}" /></p>     
+            <div class="text">Email: <input type="text" th:field="*{email}" /></div>
+            <p><input type="submit" value="Invia" /> <input type="reset" value="Reset" /> </p>
+
+        </form>
+
+    
+</body>
+</html>
