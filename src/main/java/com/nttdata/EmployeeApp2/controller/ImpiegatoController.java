@@ -131,6 +131,27 @@ public class ImpiegatoController {
 
 	    return returnValue;
 	  }
+	/*
+	 * 
+	 */
+	
+	@RequestMapping("/getjs/{id}")
+	  public String getjs(@PathVariable("id") Integer id, Model model) {
+		
+		String returnValue = "info";
+		//Integer index = Integer.parseInt(id);
+		
+		try {
+        Optional<Employee> employee =  userRepository.findById(id); //è corretto
+        
+        model.addAttribute("employee", employee.get()/*e2.toList(employee)*/); //employee.get()
+        
+		}catch(ServiceException ex) {
+			ex.printStackTrace();
+		}
+
+	    return returnValue;
+	  }
 	
 /*	public static <T> List<T> toList(Optional<T> opt) {
 	    return opt
