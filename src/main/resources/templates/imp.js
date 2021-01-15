@@ -1,5 +1,5 @@
 
-
+/*
 angular.module('ngRepeat', ['ngAnimate']).controller('repeatController', function($scope) {
   $scope.friends = [
     {name:'John', age:25, gender:'boy'},
@@ -14,4 +14,20 @@ angular.module('ngRepeat', ['ngAnimate']).controller('repeatController', functio
     {name:'Samantha', age:60, gender:'girl'}
   ];
 });
-
+*/
+angular.module('myApp', []).controller('repeatController', function($scope, $http) {
+  //$scope.e = [];
+  
+  alert("Inizio js");
+  
+  $http.get("/list")
+  .then(function(response) {
+      $scope.employee = response.data.employee;
+  },
+  function(errResponse){
+          console.error('Error while fetching Users');
+          deferred.reject(errResponse);
+          $scope.error='error getting'
+  });
+  
+});

@@ -72,6 +72,23 @@ public class ImpiegatoController {
 	    return returnValue;
 	  }
 	
+	@RequestMapping("/listjs")
+	  public String getListjs(/*@RequestParam List<Employee> employee, */ Model model) {
+		
+		String returnValue = "lista";
+		
+		try {
+          List<Employee> employee = (List<Employee>) userRepository.findAll();
+			//employee = (List<Employee>) userRepository.findAll();
+			
+			model.addAttribute("employee", employee);
+		}catch(ServiceException ex) {
+			ex.printStackTrace();
+		}
+
+	    return returnValue;
+	  }
+	
 	@RequestMapping("/get/{id}")
 	  public String get(@PathVariable("id") Integer id, Model model) {
 		

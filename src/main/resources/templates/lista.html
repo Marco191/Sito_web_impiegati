@@ -7,8 +7,10 @@ xmlns:th="http://www.thymeleaf.org">
 <title>LISTA IMPIEGATI</title>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <!-- <script type="text/javascript" src="angular.js"></script>  -->
-<script type="text/javascript" src="imp.js"></script>
+<!-- <script th:src="@{imp.js}"></script> -->
+<script src="imp.js"></script> 
 
+<!--
 <style type="text/css">
 
 
@@ -48,14 +50,14 @@ xmlns:th="http://www.thymeleaf.org">
 
 
 </style>
-
+-->
 
 </head>
 
-<body>
+<body ng-app="myApp">
 
 
-
+<!--
 <div ng-controller="repeatController">
   I have {{friends.length}} friends. They are:
   <input type="search" ng-model="q" placeholder="filter friends..." aria-label="filter friends" />
@@ -68,8 +70,14 @@ xmlns:th="http://www.thymeleaf.org">
     </li>
   </ul>
 </div>
-
-
+-->
+      <div ng-controller="repeatController">
+            <div ng-repeat="e in employee" >
+                {{ e.id }}, {{ e.firstName }}, {{ e.lastName }}, {{ e.email }}
+            </div>
+      </div>  
+      
+         
 
 </body>
 </html>
