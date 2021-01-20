@@ -7,11 +7,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -176,14 +180,35 @@ public class ImpiegatoController {
 	    return returnValue;
 	  }
 	
+	@RequestMapping("/openInsert2")
+    public String openInsert2( Model model) {
+		
+		String returnValue = "nuovoimpiegato";
+		
+		try {
+			//Map<Integer, String> employee = new HashMap<Integer, String>();
+			
+			//model.addAttribute("employee", employee);
+			model.addAttribute("employee", new Employee());
+		}catch(ServiceException ex) {
+			ex.printStackTrace();
+		}
+
+	    return returnValue;
+	  }
+	
 	//@RequestMapping(/*value= */"/insert"/*, consumes = "application/json"*/)      //consumes = "application/x-www-form-urlencoded"
 	@PostMapping(path = "/insert", consumes = "application/x-www-form-urlencoded") //consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
-    public String insert( Model model, Employee e) {
+    public String insert( Model model,/* @Valid @ModelAttribute("employee")*/ Employee e/*, BindingResult bindingResult*/) {
 		
 		String returnValue = "redirect:/impiegato/list";
 		
 		try {
 			//Map<Integer, String> employee = new HashMap<Integer, String>();
+			/*if(bindingResult.hasErrors()) {
+				System.out.println("\nErrore!\n");
+				return "openInsert2";
+			}*/
 			
 			model.addAttribute("e", userRepository.save(e) );
 			

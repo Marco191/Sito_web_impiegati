@@ -8,6 +8,7 @@ xmlns:th="http://www.thymeleaf.org">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <!-- <script type="text/javascript" src="angular.js"></script>  -->
 <script type="text/javascript" src=""></script>
+<!--  
 <script>
 		$(document).ready(function(){
 			  
@@ -29,7 +30,7 @@ xmlns:th="http://www.thymeleaf.org">
 
 		});
 	</script>
-	
+-->	
 <script>
 angular.module("myApp")
 .controller("elencoController", function($scope, $http) {
@@ -110,7 +111,8 @@ a.button {
 
     <h2 style="color:red;">TABELLA IMPIEGATI</h2>
     <br>
-    <a style="color:blue;" href="/impiegato/openInsert" class="button">Nuovo impiegato</a>
+    <a style="color:blue;" href="/impiegato/openInsert" class="button">Nuovo impiegatoJs</a>
+    <a style="color:blue;" href="/impiegato/openInsert2" class="button">Nuovo impiegato</a>
     <!-- <a style="color:blue;" href="/impiegato/greeting" class="button">HOME</a> -->
     <br>
 
@@ -130,8 +132,8 @@ a.button {
                <td><a th:href="@{/impiegato/get/{id}(id=${employee.id})}"><span class="label label-warning">Apri Dettaglio</span></a></td>
                <td><a th:href="@{/impiegato/openUpdate/{id}(id=${employee.id})}"><span class="label label-warning">Modifica</span></a></td>
                <td><a th:href="@{/impiegato/delete/{id}(id=${employee.id})}"><span class="label label-warning">Cancella</span></a></td>
-               <td><button type="button" id="load">Carica dati impiegato</button></td>
-               <td ng-app="myApp" ng-controller="elencoController"><button type="submit" ng-click="invia(utente)">Visualizza dati impiegato</button></td>
+             <!--  <td><button type="button" id="load">Carica dati impiegato</button></td> -->
+              <!-- <td ng-app="myApp" ng-controller="elencoController"><button type="submit" ng-click="invia(utente)">Visualizza dati impiegato</button></td> -->
            </tr>
          </tbody>
     </table>

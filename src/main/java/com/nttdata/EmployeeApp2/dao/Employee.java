@@ -4,6 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Employee {
@@ -22,8 +26,17 @@ public class Employee {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
+	
+	@NotNull
+	@Size(min=5, max=50)
 	private String firstName;
+	
+	@NotNull
+	@Size(min=5, max=50)
 	private String lastName;
+	
+	@NotEmpty
+	@Email
 	private String email;
 	
 	public Integer getId() {
